@@ -248,8 +248,24 @@
 <!-- Floating hearts background -->
 <div id="floating-hearts"></div>
 
+<!-- ====== SCREEN 0: Code d'acces ====== -->
+<div id="lock" class="screen active">
+    <div class="card">
+        <h1>Acces prive</h1>
+        <p>Ce contenu est reserve a une personne tres speciale...</p>
+        <div style="margin: 1.5rem 0;">
+            <input type="password" id="code-input" placeholder="Entre le code secret"
+                   style="padding:14px 18px; border:2px solid #f8bbd0; border-radius:14px; font-size:1.1rem;
+                          color:#4a1942; background:white; outline:none; width:100%; max-width:280px; text-align:center;"
+                   autocomplete="off">
+        </div>
+        <p id="code-error" style="color:#e53935; font-size:0.9rem; display:none;">Code incorrect, reessaie mon coeur...</p>
+        <button class="btn" onclick="checkCode()">Entrer</button>
+    </div>
+</div>
+
 <!-- ====== SCREEN 1: Welcome ====== -->
-<div id="welcome" class="screen active">
+<div id="welcome" class="screen">
     <div class="card">
         <h1>Quiz de l'Amour</h1>
         <p>Mon coeur, j'ai un petit jeu pour toi...</p>
@@ -348,6 +364,9 @@ const CONFIG = {
     whatsapp: "33671438682",         // Ton numero WhatsApp (ex: "33612345678")
     email: "rivot.geoffroy@gmail.com",            // Ton email (ex: "monemail@gmail.com")
 
+    // Code d'acces (en minuscules)
+    code: "01052026",     // Le code secret pour acceder au quiz
+
     // Seuil de reussite
     threshold: 0.8,       // 0.8 = 80%
 
@@ -386,7 +405,26 @@ let score = 0;
 window.addEventListener('DOMContentLoaded', () => {
     createFloatingHearts();
     setupDateInput();
+    // Allow Enter key on code input
+    document.getElementById('code-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkCode();
+    });
 });
+
+// ==========================================================
+//  CODE D'ACCES
+// ==========================================================
+function checkCode() {
+    const input = document.getElementById('code-input').value.trim().toLowerCase();
+    if (input === CONFIG.code.toLowerCase()) {
+        showScreen('welcome');
+    } else {
+        const err = document.getElementById('code-error');
+        err.style.display = 'block';
+        document.getElementById('code-input').value = '';
+        document.getElementById('code-input').focus();
+    }
+}
 
 // ==========================================================
 //  FLOATING HEARTS
