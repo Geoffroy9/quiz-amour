@@ -251,15 +251,15 @@
 <!-- ====== SCREEN 0: Code d'acces ====== -->
 <div id="lock" class="screen active">
     <div class="card">
-        <h1>Acces prive</h1>
-        <p>Ce contenu est reserve a une personne tres speciale...</p>
+        <h1>Accès prive</h1>
+        <p>Ce contenu est reserve a une personne tres spéciale...</p>
         <div style="margin: 1.5rem 0;">
             <input type="password" id="code-input" placeholder="Entre le code secret"
                    style="padding:14px 18px; border:2px solid #f8bbd0; border-radius:14px; font-size:1.1rem;
                           color:#4a1942; background:white; outline:none; width:100%; max-width:280px; text-align:center;"
                    autocomplete="off">
         </div>
-        <p id="code-error" style="color:#e53935; font-size:0.9rem; display:none;">Code incorrect, reessaie mon coeur...</p>
+        <p id="code-error" style="color:#e53935; font-size:0.9rem; display:none;">Code incorrect, réessaie...</p>
         <button class="btn" onclick="checkCode()">Entrer</button>
     </div>
 </div>
@@ -268,8 +268,8 @@
 <div id="welcome" class="screen">
     <div class="card">
         <h1>Quiz de l'Amour</h1>
-        <p>Mon coeur, j'ai un petit jeu pour toi...</p>
-        <p>J'ai repondu a <strong>10 questions sur nous</strong>. A toi de deviner ce que j'ai repondu !</p>
+        <p>Mon chat, j'ai un petit jeu pour toi...</p>
+        <p>J'ai répondu a <strong>10 questions sur nous</strong>. A toi de deviner ce que j'ai répondu !</p>
         <p style="font-size:0.95rem;color:#e91e63;font-weight:600;">
             Si tu obtiens plus de 80%, une surprise t'attend...
         </p>
@@ -302,7 +302,7 @@
 <!-- ====== SCREEN 4: Proposal ====== -->
 <div id="proposal" class="screen">
     <div class="card" style="overflow:visible;">
-        <h1>Mon amour...</h1>
+        <h1>Mon chat...</h1>
         <p id="proposal-text"></p>
         <p style="font-weight:600;font-size:1.15rem;">Acceptes-tu cet humble rendez-vous avec ton amoureux ?</p>
     </div>
@@ -321,7 +321,7 @@
     <div id="celebration-content">
         <div id="big-bouquet"></div>
         <h1>JE T'AIME</h1>
-        <p>Tu es la plus belle chose qui me soit arrivee</p>
+        <p>Tu es la plus géniale des amoureuses du monde</p>
         <button class="btn btn-gold hidden" id="choose-date-btn" onclick="showScreen('calendar-screen')">
             Choisir notre date
         </button>
@@ -346,7 +346,7 @@
             <div class="summary-detail" id="summary-time"></div>
             <p style="margin-top:1rem;font-style:italic;">Avec tout mon amour</p>
         </div>
-        <p style="font-weight:600; color:#43a047;">C'est confirme ! A tres vite mon coeur.</p>
+        <p style="font-weight:600; color:#43a047;">C'est confirmé ! A tres vite mon amour.</p>
         <div class="send-options" id="send-options"></div>
     </div>
 </div>
@@ -371,7 +371,7 @@ const CONFIG = {
     threshold: 0.8,       // 0.8 = 80%
 
     // Proposition de date
-    dateProposal: "Je nous imagine un diner aux chandelles, rien que nous deux, avec du bon vin et tes yeux en face des miens...",
+    dateProposal: "Mon chat, que dirais-tu d'un date avec moi?",
 
     // Texte du gros bouton
     acceptText: "Evidemment que j'accepte ! Tu es l'amoureux le plus incroyable que j'aie jamais eu, le meilleur du monde, et en plus le plus beau !",
@@ -381,14 +381,14 @@ const CONFIG = {
     questions: [
         { q: "Qui est le/la plus gentil(le) ?",                    answer: "elle" },
         { q: "Qui prends toute la place dans le lit la nuit ?",    answer: "elle" },
-        { q: "Qui met le plus de temps a se preparer ?",            answer: "elle" },
+        { q: "Qui met le plus de temps a se préparer ?",            answer: "elle" },
         { q: "Qui est le/la plus grognon(ne) le matin ?",          answer: "lui" },
         { q: "Qui est le plus drôle?",                             answer: "lui" },
         { q: "Qui choisit toujours le resto ou le film ?",         answer: "elle" },
-        { q: "Qui est le/la plus tetu(e) ?",                       answer: "lui" },
+        { q: "Qui est le/la plus têtu(e) ?",                       answer: "lui" },
         { q: "Qui envoie les messages les plus longs ?",            answer: "lui" },
         { q: "Qui est le/la plus calin(e) ?",                      answer: "lui" },
-        { q: "Qui a craque en premier sur l'autre ?",               answer: "lui" },
+        { q: "Qui a craqué en premier sur l'autre ?",               answer: "lui" },
     ],
 };
 
