@@ -251,8 +251,8 @@
 <!-- ====== SCREEN 0: Code d'acces ====== -->
 <div id="lock" class="screen active">
     <div class="card">
-        <h1>Accès prive</h1>
-        <p>Ce contenu est reserve a une personne tres spéciale...</p>
+        <h1>Accès privé</h1>
+        <p>Ce contenu est réservé à une personne très spéciale...</p>
         <div style="margin: 1.5rem 0;">
             <input type="password" id="code-input" placeholder="Entre le code secret"
                    style="padding:14px 18px; border:2px solid #f8bbd0; border-radius:14px; font-size:1.1rem;
@@ -269,7 +269,7 @@
     <div class="card">
         <h1>Quiz de l'Amour</h1>
         <p>Mon chat, j'ai un petit jeu pour toi...</p>
-        <p>J'ai répondu a <strong>10 questions sur nous</strong>. A toi de deviner ce que j'ai répondu !</p>
+        <p>J'ai répondu à <strong>10 questions sur nous</strong>. À toi de deviner ce que j'ai répondu !</p>
         <p style="font-size:0.95rem;color:#e91e63;font-weight:600;">
             Si tu obtiens plus de 80%, une surprise t'attend...
         </p>
@@ -346,7 +346,7 @@
             <div class="summary-detail" id="summary-time"></div>
             <p style="margin-top:1rem;font-style:italic;">Avec tout mon amour</p>
         </div>
-        <p style="font-weight:600; color:#43a047;">C'est confirmé ! A tres vite mon amour.</p>
+        <p style="font-weight:600; color:#43a047;">C'est confirmé ! À très vite mon amour.</p>
         <div class="send-options" id="send-options"></div>
     </div>
 </div>
@@ -371,23 +371,23 @@ const CONFIG = {
     threshold: 0.8,       // 0.8 = 80%
 
     // Proposition de date
-    dateProposal: "Mon chat, que dirais-tu d'un date avec moi?",
+    dateProposal: "Mon chat, que dirais-tu d'un date avec moi ?",
 
     // Texte du gros bouton
-    acceptText: "Evidemment que j'accepte ! Tu es l'amoureux le plus incroyable que j'aie jamais eu, le meilleur du monde, et en plus le plus beau !",
+    acceptText: "Évidemment que j'accepte ! Tu es l'amoureux le plus incroyable que j'aie jamais eu, le meilleur du monde, et en plus le plus beau !",
 
     // Questions : q = question, answer = TA reponse ("lui" ou "elle")
     // Adapte les reponses a votre couple !
     questions: [
         { q: "Qui est le/la plus gentil(le) ?",                    answer: "elle" },
-        { q: "Qui prends toute la place dans le lit la nuit ?",    answer: "elle" },
-        { q: "Qui met le plus de temps a se préparer ?",            answer: "elle" },
+        { q: "Qui prend toute la place dans le lit la nuit ?",    answer: "elle" },
+        { q: "Qui met le plus de temps à se préparer ?",            answer: "elle" },
         { q: "Qui est le/la plus grognon(ne) le matin ?",          answer: "lui" },
-        { q: "Qui est le plus drôle?",                             answer: "lui" },
+        { q: "Qui est le plus drôle ?",                             answer: "lui" },
         { q: "Qui choisit toujours le resto ou le film ?",         answer: "elle" },
         { q: "Qui est le/la plus têtu(e) ?",                       answer: "lui" },
         { q: "Qui envoie les messages les plus longs ?",            answer: "lui" },
-        { q: "Qui est le/la plus calin(e) ?",                      answer: "lui" },
+        { q: "Qui est le/la plus câlin(e) ?",                      answer: "lui" },
         { q: "Qui a craqué en premier sur l'autre ?",               answer: "lui" },
     ],
 };
@@ -519,16 +519,16 @@ function showResults() {
     const passed = pct >= CONFIG.threshold;
 
     document.getElementById('results-title').textContent = passed
-        ? 'Tu me connais par coeur !'
-        : 'Hmm, pas tout a fait...';
+        ? 'Tu me connais par cœur !'
+        : 'Hmm, pas tout à fait...';
 
     const circle = document.getElementById('score-circle');
     circle.className = 'score-circle ' + (passed ? 'good' : 'bad');
     document.getElementById('score-value').textContent = Math.round(pct * 100) + '%';
 
     document.getElementById('results-message').textContent = passed
-        ? `${score}/${CONFIG.questions.length} bonnes reponses ! Tu as debloque ta surprise...`
-        : `${score}/${CONFIG.questions.length} bonnes reponses. Il faut qu'on passe plus de temps ensemble ! Reessaie pour debloquer la surprise.`;
+        ? `${score}/${CONFIG.questions.length} bonnes réponses ! Tu as débloqué ta surprise...`
+        : `${score}/${CONFIG.questions.length} bonnes réponses. Il faut qu'on passe plus de temps ensemble ! Réessaie pour débloquer la surprise.`;
 
     // Build answer review
     const review = document.getElementById('answers-review');
@@ -545,18 +545,18 @@ function showResults() {
             <span class="result-icon">${correct ? '\u2705' : '\u274C'}</span>
             <div class="result-text">
                 ${q.q}
-                <small>Ta reponse : <strong>${herAnswer}</strong> | Sa reponse : <strong>${hisAnswer}</strong></small>
+                <small>Ta réponse : <strong>${herAnswer}</strong> | Sa réponse : <strong>${hisAnswer}</strong></small>
             </div>`;
         review.appendChild(div);
     });
 
     const btn = document.getElementById('results-btn');
     if (passed) {
-        btn.textContent = 'Decouvrir ta surprise';
+        btn.textContent = 'Découvrir ta surprise';
         btn.onclick = showProposal;
         btn.className = 'btn btn-gold';
     } else {
-        btn.textContent = 'Reessayer';
+        btn.textContent = 'Réessayer';
         btn.onclick = startQuiz;
         btn.className = 'btn';
     }
@@ -629,7 +629,7 @@ function fleeButton(btn) {
 }
 
 function showMissText(x, y) {
-    const texts = ['Rate !', 'Hehe !', 'Trop lent(e) !', 'Essaie encore !', 'Nope !', 'Pas celui-la !', 'Presque !'];
+    const texts = ['Raté !', 'Héhé !', 'Trop lent(e) !', 'Essaie encore !', 'Nope !', 'Pas celui-là !', 'Presque !'];
     const el = document.createElement('div');
     el.className = 'miss-text';
     el.textContent = texts[Math.floor(Math.random() * texts.length)];
@@ -779,7 +779,7 @@ function sendDate() {
     document.getElementById('summary-time').innerHTML = '\uD83D\uDD50 ' + formattedTime;
 
     // Build send options
-    const msg = `Notre RDV est confirme !\n${formattedDate} a ${formattedTime}\nAvec tout mon amour`;
+    const msg = `Notre RDV est confirmé !\n${formattedDate} à ${formattedTime}\nAvec tout mon amour`;
     const sendOptions = document.getElementById('send-options');
     sendOptions.innerHTML = '';
 
@@ -809,7 +809,7 @@ function sendDate() {
     copyBtn.textContent = 'Copier le message';
     copyBtn.onclick = () => {
         navigator.clipboard.writeText(msg).then(() => {
-            copyBtn.textContent = 'Copie !';
+            copyBtn.textContent = 'Copié !';
             setTimeout(() => { copyBtn.textContent = 'Copier le message'; }, 2000);
         });
     };
