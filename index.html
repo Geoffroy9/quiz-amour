@@ -561,7 +561,41 @@ function showResults() {
         btn.className = 'btn';
     }
 
+    sendResultsToOwner();
     showScreen('results');
+}
+
+// ==========================================================
+//  ENVOI AUTOMATIQUE DES RESULTATS
+// ==========================================================
+function sendResultsToOwner() {
+    if (!CONFIG.email) return;
+
+    const pct = Math.round((score / CONFIG.questions.length) * 100);
+    const passed = pct >= CONFIG.threshold * 100;
+
+    let details = '';
+    CONFIG.questions.forEach((q, i) => {
+        const herAnswer = userAnswers[i] === 'lui' ? CONFIG.lui : CONFIG.elle;
+        const hisAnswer = q.answer === 'lui' ? CONFIG.lui : CONFIG.elle;
+        const match = userAnswers[i] === q.answer;
+        details += (match ? '[OK] ' : '[X]  ') + q.q + ' -> ' + herAnswer;
+        if (!match) details += ' (bonne reponse : ' + hisAnswer + ')';
+        details += '\n';
+    });
+
+    fetch('https://formsubmit.co/ajax/' + CONFIG.email, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+            _subject: 'Quiz de l\'Amour - ' + CONFIG.elle + ' : ' + pct + '%' + (passed ? ' Reussi!' : ' Rate'),
+            _captcha: 'false',
+            _template: 'box',
+            Score: score + '/' + CONFIG.questions.length + ' (' + pct + '%)',
+            Statut: passed ? 'Reussi' : 'Rate',
+            Reponses: details
+        })
+    }).catch(function() {});
 }
 
 // ==========================================================
