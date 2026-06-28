@@ -812,53 +812,25 @@ function sendDate() {
     document.getElementById('summary-date').innerHTML = '\uD83D\uDCC5 ' + formattedDate;
     document.getElementById('summary-time').innerHTML = '\uD83D\uDD50 ' + formattedTime;
 
-    // Build send options
-    const msg = `Notre RDV est confirmé !\n${formattedDate} à ${formattedTime}\nAvec tout mon amour`;
-    const sendOptions = document.getElementById('send-options');
-    sendOptions.innerHTML = '';
+    // Envoi automatique par email
+    sendDateToOwner(formattedDate, formattedTime);
+}
 
-    // WhatsApp
-    if (CONFIG.whatsapp) {
-        const waBtn = document.createElement('a');
-        waBtn.className = 'btn';
-        waBtn.textContent = 'Envoyer par WhatsApp';
-        waBtn.href = `https://api.whatsapp.com/send?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(msg)}`;
-        waBtn.target = '_blank';
-        waBtn.rel = 'noopener';
-        sendOptions.appendChild(waBtn);
-    }
+function sendDateToOwner(formattedDate, formattedTime) {
+    if (!CONFIG.email) return;
 
-    // Email
-    if (CONFIG.email) {
-        const emBtn = document.createElement('a');
-        emBtn.className = 'btn btn-outline';
-        emBtn.textContent = 'Envoyer par email';
-        emBtn.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent('Notre RDV')}&body=${encodeURIComponent(msg)}`;
-        sendOptions.appendChild(emBtn);
-    }
-
-    // Copy
-    const copyBtn = document.createElement('button');
-    copyBtn.className = 'btn btn-outline';
-    copyBtn.textContent = 'Copier le message';
-    copyBtn.onclick = () => {
-        navigator.clipboard.writeText(msg).then(() => {
-            copyBtn.textContent = 'Copié !';
-            setTimeout(() => { copyBtn.textContent = 'Copier le message'; }, 2000);
-        });
-    };
-    sendOptions.appendChild(copyBtn);
-
-    // Web Share API (mobile)
-    if (navigator.share) {
-        const shareBtn = document.createElement('button');
-        shareBtn.className = 'btn btn-gold';
-        shareBtn.textContent = 'Partager';
-        shareBtn.onclick = () => {
-            navigator.share({ title: 'Notre RDV', text: msg }).catch(() => {});
-        };
-        sendOptions.appendChild(shareBtn);
-    }
+    fetch('https://formsubmit.co/ajax/' + CONFIG.email, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+            _subject: 'Quiz de l\'Amour - ' + CONFIG.elle + ' a choisi une date !',
+            _captcha: 'false',
+            _template: 'box',
+            Date: formattedDate,
+            Heure: formattedTime,
+            Message: CONFIG.elle + ' a accepte le rendez-vous et a choisi cette date !'
+        })
+    }).catch(function() {});
 }
 </script>
 </body>
